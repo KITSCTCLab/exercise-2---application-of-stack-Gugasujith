@@ -35,22 +35,42 @@ class Evaluate:
             self.stack[self.top] = data
 
   def validate_postfix_expression(self, expression):
-    for i in postfix_expression:
+    a = 0
+    b = 0
+    for element in expression:
+      if element.isnumeric():
+        a = a + 1
+      else:
+        b = b + 1
+    if b == a - 1:
+      return True
+    else:
+      return False
       
 
 
   def evaluate_postfix_expression(self, expression):
-     for i in postfix_expression:
-            if i.isdigit():
-                self.push(i)
-  
-           
-            else:
-                val1 = self.pop()
-                val2 = self.pop()
-                self.push(str( eval(val2 + i + val1)))
-  
-        return int(self.pop())
+     stack = []
+    for i in expression:
+      if i.isnumeric():
+        stack.append(int(i))
+      if len(stack) >= 2:
+        if i == '+':
+          stack[-2] = stack[-2] + stack[-1]
+          stack.pop()
+        elif i == '-':
+          stack[-2] = stack[-2] - stack[-1]
+          stack.pop()
+        elif i == '*':
+          stack[-2] = stack[-2] * stack[-1]
+          stack.pop()
+        elif i == '/':
+          stack[-2] = stack[-2] / stack[-1]
+          stack.pop()
+        elif i == '^':
+          stack[-2] = stack[-2] ^ stack[-1]
+          stack.pop()
+    return int(stack[-1])
 
 
 # Do not change the following code
