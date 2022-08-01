@@ -7,34 +7,62 @@ class Evaluate:
   """
     # Write your code here
 
-
-  def __init__(self, size):
-    
+  def _init_(self, size):
+    """Inits Evaluate with top, size_of_stack and stack.
+    Arguments:
+      top:An integer which points to the top most element in the stack.
+      size_of_stack: An integer which represents size of stack.
+      stack: A list which maintians the elements of stack.
+    """
     self.top = -1
     self.size_of_stack = size
     self.stack = []
 
 
   def isEmpty(self):
-    if (self.top == -1):
-            return True
-        else:
-            return False
+    """
+    Check whether the stack is empty.
+    Returns:
+      True if it is empty, else returns False.
+    """
+    # Write your code here
+    if self.top == -1:
+      return True
+    else:
+      return False
 
 
   def pop(self):
-    if not self.is_empty():
-            data = self.stack[self.top]
-            self.top -= 1
-            return data
+    """
+    Do pop operation if the stack is not empty.
+    Returns:
+      The data which is popped out if the stack is not empty.
+    """
+    # Write your code here
+    if not self.isEmpty():
+      self.stack.pop()
 
 
   def push(self, operand):
-     if not self.is_full():
-            self.top += 1
-            self.stack[self.top] = data
+    """
+    Push the operand to stack if the stack is not full.
+    Arguments:
+      operand: The operand to be pushed.
+    """
+    # Write your code here
+    if self.top != self.size_of_stack - 1:
+      self.stack.append(operand)
+
 
   def validate_postfix_expression(self, expression):
+    """
+    Check whether the expression is a valid postfix expression.
+    Arguments:
+      expression: A String which represents the expression to be validated.
+    Returns:
+      True if the expression is valid, else returns False.
+    """
+    # Write your code here
     a = 0
     b = 0
     for element in expression:
@@ -46,11 +74,18 @@ class Evaluate:
       return True
     else:
       return False
-      
 
 
   def evaluate_postfix_expression(self, expression):
-     stack = []
+    """
+    Evaluate the postfix expression
+    Arguments:
+      expression: A String which represents the the expression to be evaluated
+    Returns:
+      The result of evaluated postfix expression.
+    """
+    # Write your code here
+    stack = []
     for i in expression:
       if i.isnumeric():
         stack.append(int(i))
